@@ -1,0 +1,46 @@
+<h1>List of products</h1>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <%= bootstrap_form_for @products_form, method: :get, url: products_path do  |f| %>
+      <div class="row">
+        <div class="col-4">
+          <%= f.select(:shop_ids, @products_form.selected_cities, { label: 'Choose shops:' }, { multiple: true }) %>
+        </div>
+        <div class="col-4">
+          <%= f.select(:table_columns, @products_form.selected_table_columns, { label: 'Table columns:' }, { multiple: true, class: 'table_columns' }) %>
+        </div>
+        <div class="col-4">
+          <%= f.select(:sortable_columns, @products_form.selected_sortable_columns, { label: 'Sortable columns:' }, { multiple: true, class: 'sortable_columns' }) %>
+          <%= f.radio_button :sort_direction, 'asc', label: "Ascending", inline: true %>
+          <%= f.radio_button :sort_direction, 'desc', label: "Descending", inline: true %>
+        </div>
+      </div>
+      <%= f.submit('Search', class: 'btn btn-primary') %>
+      <% if @products_form.table_columns.present? && @products_form.shop_ids.present? %>
+        <%= link_to 'Export to XLSX', params.permit!.merge(format: :xlsx), method: :get, class: 'btn btn-success' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% if @products_form.table_columns.present? && @products_form.shop_ids.present? %>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <% @products_form.table_header_columns.each do |column| %>
+          <th class="text-center"><%= column %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products_form.records.each do |product| %>
+        <tr>
+          <% @products_form.table_columns.each do |column| %>
+            <td class="text-center"><%= product.public_send(column) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
