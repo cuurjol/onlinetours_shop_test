@@ -24,17 +24,14 @@ $(document).on("turbolinks:load", function() {
   });
 
   $('.table_columns').change(function() {
-    let selectize = $('.sortable_columns')[0].selectize;
-
-    for(let i = 0; i < $(this)[0].length; ++i){
+    let sortable_columns = $('.sortable_columns')[0].selectize;
+    sortable_columns.clear();
+    sortable_columns.clearOptions();
+    
+    for (let i = 0; i < $(this)[0].options.length; i++) {
       let text = $(this)[0].options[i].text;
       let value = $(this)[0].options[i].value;
-
-      if (selectize.options[value]) {
-        selectize.removeOption(value, true);
-      } else {
-        selectize.addOption({ text: text, value: value });
-      }
+      sortable_columns.addOption({ text: text, value: value });
     }
   });
 });
