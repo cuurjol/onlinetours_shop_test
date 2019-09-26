@@ -5,7 +5,7 @@
     <%= bootstrap_form_for @products_form, method: :get, url: products_path do  |f| %>
       <div class="row">
         <div class="col-4">
-          <%= f.select(:shop_ids, @products_form.selected_cities, { label: 'Choose shops:' }, { multiple: true }) %>
+          <%= f.select(:shop_ids, @products_form.selected_shops, { label: 'Choose shops:' }, { multiple: true }) %>
         </div>
         <div class="col-4">
           <%= f.select(:table_columns, @products_form.selected_table_columns, { label: 'Table columns:' }, { multiple: true, class: 'table_columns' }) %>

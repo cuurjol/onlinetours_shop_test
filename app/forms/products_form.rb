@@ -26,12 +26,12 @@ class ProductsForm
     return ProductsFilter.new.scope if shop_ids.blank? || table_columns.blank?
 
     @products_filter = ProductsFilter.new(Product.all)
-    @products_filter.cities(shop_ids)
+    @products_filter.shops(shop_ids)
     @products_filter.selected_columns(table_columns)
     @products_filter.sortable_columns(sortable_columns, sort_direction)
   end
 
-  def selected_cities
+  def selected_shops
     Shop.all.map { |s| [s.name, s.id] }
   end
 

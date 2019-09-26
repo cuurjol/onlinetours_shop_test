@@ -12,7 +12,7 @@ class ProductsFilter
     @scope = scope.joins(product_shops: :shop) unless scope.nil?
   end
 
-  def cities(values)
+  def shops(values)
     @scope = @scope.where(shops: { id: values })
   end
 
