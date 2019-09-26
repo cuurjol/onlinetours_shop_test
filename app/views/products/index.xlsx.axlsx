@@ -1,3 +1,11 @@
+# https://rscz.ru/clones/axlsx/blob/b0c524ed2fb071ecb61f2b5b790462427e9b560d/examples/example.rb
+# https://medium.com/@JasonCodes/ruby-on-rails-exporting-data-to-excel-b3b204281085
+# https://coderwall.com/p/wlhfhg/rails-exporting-data-to-spreadsheets
+# https://www.sitepoint.com/generate-excel-spreadsheets-rails-axlsx-gem/
+# http://blog.magmalabs.io/2019/04/30/pdf-and-xlsx-reports-with-ruby-on-rails.html
+# https://spin.atomicobject.com/2017/03/22/parsing-excel-files-ruby/
+# https://www.ruby-toolbox.com/categories/reporting
+
 wb = xlsx_package.workbook
 
 wb.styles do |style|
