@@ -8,8 +8,8 @@ class ProductsFilter
 
   attr_reader :scope
 
-  def initialize(scope = nil)
-    @scope = scope.joins(product_shops: :shop) unless scope.nil?
+  def initialize(scope = [])
+    @scope = scope.blank? ? scope : scope.joins(product_shops: :shop)
   end
 
   def shops(values)
